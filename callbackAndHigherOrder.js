@@ -6,17 +6,13 @@
 */
 
 // CODE HERE
-function multiply(num, num2, cb){
-  let num3 = num * num2
-  cb(num3)
-
-}
+const multiply = (num1, num2, cb) => cb(num1 * num2)
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-multiply(4, 3, (answer) => {
+multiply(4, 3, answer => {
   console.log('The answer is ' + answer) //should console.log 12
 })
 
@@ -93,20 +89,25 @@ last(names, lastName => {
 */
 
 // CODE HERE 
-
-
+function contains(arr, name, cb){
+  
+  if(arr.includes(name) === true){
+    cb(true)
+  } else{
+    cb(false)
+  }
+}
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// contains(names, 'Colt', result => {
-//   if(result === true){
-//     console.log('Colt is in the array')
-//   } else {
-//     console.log('Colt is not in the array')
-//   }
-// })
-
+contains(names, 'Colt', result => {
+  if(result === true){
+    console.log('Colt is in the array')
+  } else {
+    console.log('Colt is not in the array')
+  }
+})
 
 
 ////////// PROBLEM 5 //////////
@@ -129,13 +130,13 @@ function uniq(arr, cb){
   
   cb(arr)
 }
-
+}
 function printIt(arr){
   console.log('New array:')
   console.log(arr)
 }
 
-uniq(names, printIt)
+
 /*
   Invoke the uniq function, passing in the names array from above and a callback function.
   The callback function should take in one parameter called uniqArr.
@@ -145,7 +146,7 @@ uniq(names, printIt)
 
 // CODE HERE
 
-
+uniq(names, printIt)
 
 ////////// PROBLEM 6 //////////
 
@@ -205,15 +206,22 @@ var users = [
 // Do not edit the code above.
 
 // CODE HERE 
-
+function getUserById(arr, id, cb){
+  for(let i = 0; i < arr.length; i++){
+    if(arr[i].id === id){
+      return cb(arr[i])
+    }
+  }
+  
+}
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// getUserById(users, '16t', user => {
-//   console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address) 
-// })
+getUserById(users, '16t', user => {
+  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address) 
+})
 
 ////////// CHALLENGE //////////
 
@@ -232,7 +240,7 @@ var users = [
 */
 
 // CODE HERE
-
+const addingFactory = x => y => x + y
 /*
   Now that you have addingFactory, you can create other
   functions from it. 
@@ -247,6 +255,7 @@ var users = [
 
 // CODE HERE
 
+let addTen = addingFactory(10)
 /*
   Now the inner function is stored in the addTen variable! 
 
@@ -258,7 +267,8 @@ var users = [
 */
 
 // CODE HERE
-
+console.log(addTen(22))
+console.log(addTen(15))
 /*
   Let's make another function from the addingFactory. 
 
@@ -271,3 +281,7 @@ var users = [
 */
 
 // CODE HERE
+let addTwentyThree = addingFactory(23)
+
+console.log(addTwentyThree(16))
+console.log(addTwentyThree(26))
